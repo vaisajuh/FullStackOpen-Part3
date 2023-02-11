@@ -4,8 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:ui": "rm -rf build && cd ../FullStackOpen/osa2/puhelinluettelo/ && npm run build && cp -r build ../../../FullStackOpen-Part3",
+    "deploy": "fly deploy",
+    "depdeploy:full": "npm run build:ui && npm run deploy",
+    "logs:prod": "fly logs"
   },
+  "proxy": "http://localhos:3001",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vaisajuh/FullStackOpen-Part3.git"
@@ -15,5 +22,13 @@
   "bugs": {
     "url": "https://github.com/vaisajuh/FullStackOpen-Part3/issues"
   },
-  "homepage": "https://github.com/vaisajuh/FullStackOpen-Part3#readme"
+  "homepage": "https://github.com/vaisajuh/FullStackOpen-Part3#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
 }

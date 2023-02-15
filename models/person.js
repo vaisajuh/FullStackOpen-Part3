@@ -13,10 +13,18 @@ mongoose.connect(url)
     console.log('error connecting to MongoDB:', error.message)
   })
 
+function validator (val) {
+  const temp = /^(\d{2}|\d{3})[-]\d{7,}$/
+  if (val.match(temp)) {
+    return true
+  }
+  return false
+}
+
 const personSchema = new mongoose.Schema({
   id: Number,
-  name: String,
-  number: Number,
+  name: { type: String, minlength:3 },
+  number: { type: String, validate: validator }
 })
 
 personSchema.set('toJSON', {
